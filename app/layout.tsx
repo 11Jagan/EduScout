@@ -28,12 +28,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={cn("font-sans", inter.variable)}>
       <body className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-1">{children}</main>
-        <footer className="bg-white border-t border-gray-200 mt-16">
+        <main className="flex-1 -mt-20">{children}</main>
+        <footer className="bg-[#FDFDFC] border-t border-gray-100 mt-16">
           <div className="page-container py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 bg-blue-700 rounded-lg flex items-center justify-center">
+                <div className="w-7 h-7 bg-black rounded-lg flex items-center justify-center">
                   <span className="text-white text-xs font-bold">E</span>
                 </div>
                 <span className="font-bold text-gray-900">EduScout</span>
@@ -42,9 +42,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 © {new Date().getFullYear()} EduScout. Helping students find their dream colleges.
               </p>
               <nav className="flex gap-6 text-sm text-gray-500">
-                <a href="/colleges" className="hover:text-blue-700 transition-colors">Colleges</a>
-                <a href="/compare" className="hover:text-blue-700 transition-colors">Compare</a>
-                <a href="/predictor" className="hover:text-blue-700 transition-colors">Predictor</a>
+                <a href="/colleges" className="hover:text-black transition-colors">Colleges</a>
+                <a href="/compare" className="hover:text-black transition-colors">Compare</a>
+                <a href="/predictor" className="hover:text-black transition-colors">Predictor</a>
               </nav>
             </div>
           </div>

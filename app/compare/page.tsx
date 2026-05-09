@@ -103,8 +103,8 @@ function CompareContent() {
       <div className="page-container py-12">
         <Breadcrumb items={[{ label: "Compare" }]} />
         <div className="text-center max-w-md mx-auto mt-8">
-          <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-5">
-            <GitCompareArrows size={36} className="text-blue-400" />
+          <div className="w-20 h-20 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-5">
+            <GitCompareArrows size={36} className="text-black" />
           </div>
           <h1 className="text-2xl font-extrabold text-gray-900 mb-3">Compare Colleges</h1>
           <p className="text-gray-500 mb-6">
@@ -127,12 +127,12 @@ function CompareContent() {
   }
 
   return (
-    <div className="page-container py-8 pb-12">
+    <div className="page-container pt-24 pb-12">
       <Breadcrumb items={[{ label: "Compare" }]} />
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 mt-4">
         <div>
           <h1 className="section-title flex items-center gap-2">
-            <GitCompareArrows className="text-blue-700" size={24} />
+            <GitCompareArrows className="text-black" size={24} />
             Compare Colleges
           </h1>
           <p className="section-subtitle">Side-by-side comparison · Highlights best values</p>
@@ -164,11 +164,11 @@ function CompareContent() {
               <div key={c.id} className="p-4 border-r border-gray-100 last:border-r-0">
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center flex-shrink-0 border border-blue-200">
-                      <span className="text-blue-700 font-bold">{c.name.charAt(0)}</span>
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 flex items-center justify-center flex-shrink-0 border border-zinc-200">
+                      <span className="text-black font-bold">{c.name.charAt(0)}</span>
                     </div>
                     <div>
-                      <Link href={`/colleges/${c.slug}`} className="font-bold text-gray-900 text-sm hover:text-blue-700 transition-colors line-clamp-2 leading-tight">
+                      <Link href={`/colleges/${c.slug}`} className="font-bold text-gray-900 text-sm hover:text-black transition-colors line-clamp-2 leading-tight">
                         {c.name}
                       </Link>
                       <p className="text-xs text-gray-400 mt-0.5">{c.location}</p>
@@ -298,11 +298,11 @@ function CompareContent() {
                         disabled={alreadyAdded}
                         className={cn(
                           "w-full flex items-center gap-3 p-3 rounded-lg text-left transition-colors",
-                          alreadyAdded ? "opacity-50 cursor-not-allowed bg-gray-50" : "hover:bg-blue-50"
+                          alreadyAdded ? "opacity-50 cursor-not-allowed bg-gray-50" : "hover:bg-zinc-100"
                         )}
                       >
-                        <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center border border-blue-200 flex-shrink-0">
-                          <span className="text-blue-700 font-bold text-sm">{c.name.charAt(0)}</span>
+                        <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 flex items-center justify-center border border-zinc-200 flex-shrink-0">
+                          <span className="text-black font-bold text-sm">{c.name.charAt(0)}</span>
                         </div>
                         <div className="min-w-0">
                           <p className="font-medium text-gray-900 text-sm truncate">{c.name}</p>

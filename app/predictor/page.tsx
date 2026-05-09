@@ -40,8 +40,8 @@ function ResultCard({ result }: { result: PredictorResult }) {
     )}>
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-3">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center border border-blue-200 flex-shrink-0">
-            <span className="text-blue-700 font-bold">{result.college.name.charAt(0)}</span>
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-zinc-100 to-zinc-200 flex items-center justify-center border border-zinc-200 flex-shrink-0">
+            <span className="text-black font-bold">{result.college.name.charAt(0)}</span>
           </div>
           <div>
             <h3 className="font-bold text-gray-900 text-sm leading-tight">{result.college.name}</h3>
@@ -78,7 +78,7 @@ function ResultCard({ result }: { result: PredictorResult }) {
           </p>
           <div className="flex flex-wrap gap-1.5">
             {result.matchingBranches.map((b) => (
-              <span key={b} className="badge-blue text-xs px-2 py-0.5">{b}</span>
+              <span key={b} className="bg-zinc-100 text-zinc-700 text-xs px-2 py-0.5 rounded">{b}</span>
             ))}
           </div>
         </div>
@@ -94,8 +94,8 @@ function ResultCard({ result }: { result: PredictorResult }) {
           disabled={compareFull}
           className={cn(
             "flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-            inCompare ? "bg-blue-700 text-white" : compareFull ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "btn-secondary"
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2",
+            inCompare ? "bg-black text-white" : compareFull ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "btn-secondary"
           )}
         >
           {inCompare ? <Check size={13} /> : <Plus size={13} />}
@@ -161,12 +161,12 @@ export default function PredictorPage() {
   const lowResults = results.filter((r) => r.chance === "LOW");
 
   return (
-    <div className="page-container py-8 pb-12">
+    <div className="page-container pt-24 pb-12">
       <Breadcrumb items={[{ label: "Predictor" }]} />
       {/* Header */}
       <div className="mb-8">
         <h1 className="section-title flex items-center gap-2">
-          <BarChart3 className="text-blue-700" size={24} />
+          <BarChart3 className="text-black" size={24} />
           Admission Predictor
         </h1>
         <p className="section-subtitle">Enter your rank to see colleges within your reach</p>
@@ -188,11 +188,11 @@ export default function PredictorPage() {
                   className={cn(
                     "text-left p-3.5 rounded-xl border-2 transition-all",
                     exam === value
-                      ? "border-blue-600 bg-blue-50"
+                      ? "border-black bg-zinc-100"
                       : "border-gray-200 hover:border-gray-300 bg-white"
                   )}
                 >
-                  <p className={cn("font-bold text-sm", exam === value ? "text-blue-700" : "text-gray-900")}>
+                  <p className={cn("font-bold text-sm", exam === value ? "text-black" : "text-gray-900")}>
                     {label}
                   </p>
                   <p className="text-xs text-gray-400 mt-0.5 leading-snug">{description}</p>

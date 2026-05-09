@@ -85,7 +85,7 @@ export default function CollegesPage() {
   };
 
   return (
-    <div className="page-container py-8">
+    <div className="page-container pt-24 pb-8">
       <Breadcrumb items={[{ label: "Colleges" }]} />
       {/* Header */}
       <div className="mb-6">
@@ -218,8 +218,8 @@ export default function CollegesPage() {
                 onClick={() => setPage(n as number)}
                 className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
                   page === n
-                    ? "bg-blue-700 text-white"
-                    : "bg-white border border-gray-200 text-gray-700 hover:border-blue-300 hover:text-blue-700"
+                    ? "bg-black text-white"
+                    : "bg-white border border-gray-200 text-gray-700 hover:border-zinc-300 hover:text-black"
                 }`}
               >
                 {n}

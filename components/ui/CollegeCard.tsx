@@ -13,7 +13,7 @@ interface CollegeCardProps {
 }
 
 const typeColors: Record<string, string> = {
-  IIT: "badge-blue",
+  IIT: "bg-zinc-900 text-white",
   NIT: "badge-purple",
   AIIMS: "badge-red",
   IIM: "badge-amber",
@@ -53,21 +53,21 @@ export default function CollegeCard({ college, compact = false }: CollegeCardPro
       id={`college-card-${college.id}`}
       className={cn(
         "card p-5 md:p-6 flex flex-col gap-5 animate-slide-up group overflow-hidden relative",
-        inCompare && "ring-2 ring-blue-500/50 shadow-blue-500/10"
+        inCompare && "ring-2 ring-black shadow-black/10"
       )}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-zinc-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       {/* Header */}
       <div className="flex items-start gap-3">
         {/* Logo placeholder */}
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center flex-shrink-0 border border-blue-200">
-          <span className="text-blue-700 font-bold text-lg">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-zinc-100 to-zinc-200 flex items-center justify-center flex-shrink-0 border border-zinc-200">
+          <span className="text-black font-bold text-lg">
             {college.name.charAt(0)}
           </span>
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-bold text-gray-900 text-sm leading-tight line-clamp-2 group-hover:text-blue-700 transition-colors">
+            <h3 className="font-bold text-gray-900 text-sm leading-tight line-clamp-2 group-hover:text-black transition-colors">
               {college.name}
             </h3>
             <span className={cn("badge flex-shrink-0 text-xs", typeColors[college.type] ?? "badge-gray")}>
@@ -119,7 +119,7 @@ export default function CollegeCard({ college, compact = false }: CollegeCardPro
             </span>
           ))}
           {college.naacGrade && (
-            <span className="badge-blue text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-medium">
+            <span className="badge-zinc text-xs px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-700 font-medium">
               NAAC {college.naacGrade}
             </span>
           )}
@@ -144,7 +144,7 @@ export default function CollegeCard({ college, compact = false }: CollegeCardPro
             "flex-1 flex items-center justify-center gap-1.5 rounded-lg text-sm font-medium py-2 transition-all duration-150",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
             inCompare
-              ? "bg-blue-700 text-white hover:bg-red-600"
+              ? "bg-black text-white hover:bg-zinc-800"
               : compareListFull
               ? "bg-gray-100 text-gray-400 cursor-not-allowed"
               : "btn-secondary"
