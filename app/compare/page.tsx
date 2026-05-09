@@ -31,8 +31,8 @@ const ROW_DEFS = [
 function getBestIndex(colleges: CollegeDetail[], key: string, direction: "lower" | "higher" | "none", nested?: string): number {
   if (direction === "none") return -1;
   const vals = colleges.map((c) => {
-    const obj = nested ? (c as Record<string, unknown>)[nested] as Record<string, unknown> | null : c as Record<string, unknown>;
-    return obj ? Number(obj[key] ?? 0) : 0;
+    const obj = nested ? (c as any)[nested] : c;
+    return obj ? Number((obj as any)[key] ?? 0) : 0;
   });
   if (direction === "lower") return vals.indexOf(Math.min(...vals));
   return vals.indexOf(Math.max(...vals));
@@ -200,10 +200,8 @@ export default function ComparePage() {
                   <span className="text-sm font-semibold text-gray-600">{row.label}</span>
                 </div>
                 {colleges.map((c, ci) => {
-                  const obj = row.nested
-                    ? (c as Record<string, unknown>)[row.nested as string] as Record<string, unknown> | null
-                    : c as Record<string, unknown>;
-                  const raw = obj ? obj[row.key] : null;
+                  const obj = row.nested ? (c as any)[row.nested] : c;
+                  const raw = obj ? (obj as any)[row.key] : null;
                   const formatted = raw !== null && raw !== undefined ? row.fmt(raw) : "—";
                   const isBest = ci === bestIdx;
                   return (
