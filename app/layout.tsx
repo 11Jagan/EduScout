@@ -39,7 +39,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="font-bold text-gray-900">EduScout</span>
               </div>
               <p className="text-sm text-gray-500">
-                © {new Date().getFullYear()} EduScout. Helping students find their dream colleges.
+                © {new Date().getFullYear()} EduScout. Developed by{" "}
+                <a
+                  href="https://konthamjagan.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-black hover:underline underline-offset-4"
+                >
+                  Kontham Jagan Mohan Reddy
+                </a>
               </p>
               <nav className="flex gap-6 text-sm text-gray-500">
                 <a href="/colleges" className="hover:text-black transition-colors">Colleges</a>
