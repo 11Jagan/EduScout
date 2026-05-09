@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, CollegeType } from "@prisma/client";
 import * as XLSX from "xlsx";
 
 const prisma = new PrismaClient();
@@ -51,7 +51,7 @@ async function processFile(filename: string) {
     // Determine type and simulate realistic metrics
     const upperName = name.toUpperCase();
     const isGovt = upperName.includes("NATIONAL") || upperName.includes("INDIAN") || upperName.includes("STATE") || upperName.includes("GOVERNMENT") || upperName.includes("GOVT");
-    const type = isGovt ? "STATE_UNIVERSITY" : "PRIVATE";
+    const type = (isGovt ? "STATE_UNIVERSITY" : "PRIVATE") as CollegeType;
 
     let established = parseInt(estYearStr);
     if (isNaN(established)) established = 2000;
