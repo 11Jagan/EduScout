@@ -9,12 +9,12 @@ function slugify(text: string) {
 
 async function processFile(filename: string) {
   console.log(`\n--- Reading ${filename} ---`);
-  
+
   // This will take a few seconds for the large 37MB file
   const workbook = XLSX.readFile(filename);
   const sheetName = workbook.SheetNames[0];
   const data = XLSX.utils.sheet_to_json<string[]>(workbook.Sheets[sheetName], { header: 1 });
-  
+
   // Find the row that contains the headers (it starts with "Aishe Code")
   let headerRowIdx = -1;
   for (let i = 0; i < 10; i++) {
@@ -37,7 +37,7 @@ async function processFile(filename: string) {
 
   const rows = data.slice(headerRowIdx + 1).filter(row => row.length > 1);
   const collegesToInsert = [];
-  
+
   console.log(`Found ${rows.length} records in ${filename}. Formatting data...`);
 
   for (const row of rows) {
@@ -52,13 +52,13 @@ async function processFile(filename: string) {
     const upperName = name.toUpperCase();
     const isGovt = upperName.includes("NATIONAL") || upperName.includes("INDIAN") || upperName.includes("STATE") || upperName.includes("GOVERNMENT") || upperName.includes("GOVT");
     const type = isGovt ? "STATE_UNIVERSITY" : "PRIVATE";
-    
+
     let established = parseInt(estYearStr);
     if (isNaN(established)) established = 2000;
 
     const baseFees = isGovt ? 25000 : 100000;
     const feesPerYear = baseFees + Math.floor(Math.random() * 50000);
-    
+
     const rating = parseFloat((3.0 + Math.random() * 2.0).toFixed(1));
     const placementPercent = Math.floor(60 + Math.random() * 40);
     const avgPackage = (isGovt ? 600000 : 300000) + Math.floor(Math.random() * 300000);
@@ -83,7 +83,7 @@ async function processFile(filename: string) {
   }
 
   console.log(`Pushing ${collegesToInsert.length} records to database in batches...`);
-  
+
   const BATCH_SIZE = 250;
   let insertedCount = 0;
   for (let i = 0; i < collegesToInsert.length; i += BATCH_SIZE) {
