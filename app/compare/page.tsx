@@ -188,8 +188,8 @@ export default function ComparePage() {
           </div>
 
           {/* Rows */}
-          {ROW_DEFS.map((row, ri) => {
-            const bestIdx = getBestIndex(colleges, row.key, row.compare as "lower" | "higher" | "none", row.nested as string | undefined);
+          {ROW_DEFS.map((row: any, ri) => {
+            const bestIdx = getBestIndex(colleges, row.key, row.compare as "lower" | "higher" | "none", row.nested);
             return (
               <div
                 key={row.key}
