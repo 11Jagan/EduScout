@@ -1,0 +1,154 @@
+// This is your Prisma schema file
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model College {
+  id                Int           @id @default(autoincrement())
+  name              String
+  slug              String        @unique
+  location          String
+  state             String
+  feesPerYear       Int           @map("fees_per_year")
+  rating            Float
+  type              CollegeType
+  established       Int
+  naacGrade         String        @map("naac_grade")
+  placementPercent  Float         @map("placement_percent")
+  avgPackage        Int           @map("avg_package")
+  topPackage        Int           @map("top_package")
+  logoUrl           String?       @map("logo_url")
+  createdAt         DateTime      @default(now()) @map("created_at")
+
+  tags              CollegeTag[]
+  courses           Course[]
+  placements        Placement[]
+  reviews           Review[]
+  collegeInfo       CollegeInfo?
+  predictorCutoffs  PredictorCutoff[]
+
+  @@map("colleges")
+}
+
+model CollegeTag {
+  id        Int     @id @default(autoincrement())
+  collegeId Int     @map("college_id")
+  tag       String
+
+  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@map("college_tags")
+}
+
+model Course {
+  id            Int         @id @default(autoincrement())
+  collegeId     Int         @map("college_id")
+  name          String
+  durationYears Int         @map("duration_years")
+  seats         Int
+  feesPerYear   Int         @map("fees_per_year")
+  degreeLevel   DegreeLevel @map("degree_level")
+
+  college       College     @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@map("courses")
+}
+
+model Placement {
+  id               Int     @id @default(autoincrement())
+  collegeId        Int     @map("college_id")
+  year             Int
+  placementPercent Float   @map("placement_percent")
+  avgPackage       Int     @map("avg_package")
+  topPackage       Int     @map("top_package")
+  medianPackage    Int     @map("median_package")
+  companiesVisited Int     @map("companies_visited")
+
+  college          College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@map("placements")
+}
+
+model Review {
+  id          Int      @id @default(autoincrement())
+  collegeId   Int      @map("college_id")
+  authorName  String   @map("author_name")
+  batchYear   Int      @map("batch_year")
+  rating      Float
+  content     String
+  courseTaken String   @map("course_taken")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  college     College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@map("reviews")
+}
+
+model CollegeInfo {
+  id                    Int     @id @default(autoincrement())
+  collegeId             Int     @unique @map("college_id")
+  about                 String
+  accreditations        String
+  campusAreaAcres       Float?  @map("campus_area_acres")
+  hostelAvailable       Boolean @default(false) @map("hostel_available")
+  scholarshipAvailable  Boolean @default(false) @map("scholarship_available")
+  websiteUrl            String? @map("website_url")
+
+  college               College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@map("college_info")
+}
+
+model PredictorCutoff {
+  id           Int      @id @default(autoincrement())
+  collegeId    Int      @map("college_id")
+  exam         ExamType
+  category     Category
+  openingRank  Int      @map("opening_rank")
+  closingRank  Int      @map("closing_rank")
+  year         Int
+  branch       String
+
+  college      College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@map("predictor_cutoffs")
+}
+
+enum CollegeType {
+  IIT
+  NIT
+  AIIMS
+  IIM
+  DEEMED
+  CENTRAL_UNIVERSITY
+  STATE_UNIVERSITY
+  PRIVATE
+}
+
+enum DegreeLevel {
+  UNDERGRADUATE
+  POSTGRADUATE
+  DOCTORATE
+}
+
+enum ExamType {
+  JEE_MAIN
+  JEE_ADVANCED
+  NEET
+}
+
+enum Category {
+  GENERAL
+  OBC
+  SC
+  ST
+  EWS
+}
