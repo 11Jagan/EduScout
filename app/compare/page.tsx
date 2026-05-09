@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useCompareStore } from "@/store/compareStore";
@@ -38,7 +38,7 @@ function getBestIndex(colleges: CollegeDetail[], key: string, direction: "lower"
   return vals.indexOf(Math.max(...vals));
 }
 
-export default function ComparePage() {
+function CompareContent() {
   const { compareList, removeFromCompare, clearCompare, addToCompare } = useCompareStore();
   const [colleges, setColleges] = useState<CollegeDetail[]>([]);
   const [loading, setLoading] = useState(false);
@@ -324,5 +324,13 @@ export default function ComparePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ComparePage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center animate-pulse text-gray-500">Loading comparison...</div>}>
+      <CompareContent />
+    </Suspense>
   );
 }
