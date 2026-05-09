@@ -113,7 +113,7 @@ async function main() {
     }
 
     // Courses
-    const courseKey = c.type === "STATE_UNIVERSITY" ? "CENTRAL_UNIVERSITY" : c.type;
+    const courseKey = (c.type as string) === "STATE_UNIVERSITY" ? "CENTRAL_UNIVERSITY" : c.type;
     const courseList = courseSets[courseKey] || courseSets["PRIVATE"];
     for (const cr of courseList) {
       await prisma.course.create({
