@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
 
     const byCollege = new Map<number, { college: typeof cutoffs[0]["college"]; branches: { branch: string; closing: number; chance: ChanceLevel }[] }>();
 
-    for (const cutoff of seen.values()) {
+    for (const cutoff of Array.from(seen.values())) {
       const chance = calcChance(rank, cutoff.closingRank);
       if (!chance) continue;
 
@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    for (const [, { college, branches }] of byCollege) {
+    for (const [, { college, branches }] of Array.from(byCollege)) {
       // Best chance for this college
       const hasHigh = branches.some((b) => b.chance === "HIGH");
       const hasMedium = branches.some((b) => b.chance === "MEDIUM");

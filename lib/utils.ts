@@ -50,3 +50,10 @@ export function formatFees(amount: number): string {
   }
   return `₹${amount.toLocaleString('en-IN')}/yr`;
 }
+
+export function feesRangeToFilter(range: string) {
+  if (!range) return undefined;
+  const [min, max] = range.split("-").map(Number);
+  if (isNaN(min) || isNaN(max)) return undefined;
+  return { gte: min, lte: max };
+}
